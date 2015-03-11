@@ -13,12 +13,11 @@ import java.util.HashMap;
  * @author noc
  */
 public class TestModel extends ModelTemplate{
-    private ModelTemplate mt, mt2;
+    private ModelTemplate mt = null;
     public TestModel(){
         //constructor
         this.loadDatabase("samplepostgre");//sample
         mt = this.loadDatabase("samplepostgre", true);//sample for multiple access
-        mt2 = this.loadDatabase("samplepostgre", true);// new sample for multiple access
     }
     public void testDBConnection(){
         this.setDefaultQuery("SELECT now()");
@@ -33,13 +32,6 @@ public class TestModel extends ModelTemplate{
         mt.dbSelect("name, company, address");
         mt.dbLimit(4);
         mt.dbGet("\"CORE\".\"USERS\"");
-        
-        where.clear();
-        where.put("id","1112");
-        mt2.dbWhere(where);
-        mt2.dbSelect("name,company,address");
-        mt2.dbLimit(1);
-        mt2.dbGet("\"CORE\".\"USERS\"");
         
         where.clear();
         where.put("id", "1111");
