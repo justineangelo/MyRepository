@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!-- Note that this file is refreshed by the server every 60seconds, as specified in web.xml -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+        <!-- Start The File logger -->
+        <appender name="main" class="org.apache.log4j.rolling.RollingFileAppender">
+                <!-- The active file to log to -->
+                <param name="file" value="${catalina.home}/logs/myproject.log" />
+                <!-- <param name="MaxFileSize" value="5MB" /> --> <!-- file size -->
+                <!-- <param name="MaxBackupIndex" value="10" /> --> <!-- number of backups file -->
+                <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+                        <!-- The file to roll to, this is a fairly intelligent parameter, if the file
+                        ends in .gz, it gzips it, based on the date stamp it rolls at that time, 
+                        default is yyyy-MM-dd, (rolls at midnight)
+                        See: http://logging.apache.org/log4j/companions/extras/apidocs/org/apache/log4j/rolling/TimeBasedRollingPolicy.html -->
+                        <param name="FileNamePattern" value="${catalina.home}/logs/myproject.%d.log.gz" />
+                </rollingPolicy>
+
+                <layout class="org.apache.log4j.PatternLayout">
+                        <!-- The log message pattern -->
+                        <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+                </layout>
+        </appender>
+        <!-- End The File logger -->
+        <!-- Start File logger to console -->
+        <appender name="console" class="org.apache.log4j.ConsoleAppender">
+                <param name="Target" value="System.out" />
+                <layout class="org.apache.log4j.PatternLayout">
+                        <!-- The log message pattern -->
+                        <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+                </layout>
+        </appender>
+        <!-- End File logger to console -->
+        <appender name="stderr" class="org.apache.log4j.ConsoleAppender">
+                <param name="Target" value="System.err" />
+                <layout class="org.apache.log4j.PatternLayout">
+                        <!-- The log message pattern -->
+                        <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+                </layout>
+        </appender>
+        <!-- Loggers to filter out various class paths -->
+        <!--
+        <logger name="org.tspi">
+                <level value="info"/>
+                <appender-ref ref="mainlog" />
+        </logger>
+        -->
+        <!-- Logger level : all|debug|info|warn|error|fatal|off|null -->
+        <!-- Debugging loggers -->
+        <logger name="com.tspi">
+                <level value="off"/>
+                <appender-ref ref="main" />
+                <appender-ref ref="console" />
+        </logger>
+        <!-- to be logged -->
+        <root>
+                <priority value="info" />
+                <appender-ref ref="main" />
+                <appender-ref ref="console" />
+        </root>
+</log4j:configuration>
