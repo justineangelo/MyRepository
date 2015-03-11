@@ -13,7 +13,7 @@ import java.util.HashMap;
  * @author noc
  */
 public class TestModel extends ModelTemplate{
-    private ModelTemplate mt, mt2;
+    private final ModelTemplate mt, mt2;
     public TestModel(){
         //constructor
         this.loadDatabase("samplepostgre");//sample
