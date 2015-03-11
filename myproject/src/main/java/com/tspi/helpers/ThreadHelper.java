@@ -24,7 +24,7 @@ public class ThreadHelper extends CoreTemplate implements Runnable{
         this.loggerDebug("START RUN THREAD " + this.threadName);
         //Place code here
         
-        
+  
         this.loggerDebug("END RUN THREAD " + this.threadName);
     }
     /**
@@ -36,5 +36,15 @@ public class ThreadHelper extends CoreTemplate implements Runnable{
             t = new Thread(this, threadName);
             t.start();
         }
+    }
+    /**
+     * Set Priority of the Thread
+     * MIN = 1
+     * MED = 5
+     * MAX = 10
+     * @param priority 
+     */
+    public void setPriority(int priority){
+        t.setPriority(priority);
     }
 }

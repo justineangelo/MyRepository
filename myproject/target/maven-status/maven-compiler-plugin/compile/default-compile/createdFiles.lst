@@ -2,6 +2,7 @@ com\tspi\models\StoreModel.class
 com\tspi\template\ControllerTemplate.class
 com\tspi\template\CoreTemplate.class
 com\tspi\controllers\MainController.class
+com\tspi\helpers\ThreadHelper.class
 com\tspi\template\ModelTemplate$DBType.class
 com\tspi\controllers\IMainController.class
 com\tspi\helpers\RequestHelper$RequestProperty.class
